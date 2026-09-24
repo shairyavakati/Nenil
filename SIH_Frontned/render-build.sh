@@ -14,4 +14,4 @@ echo "Fetching dependencies..."
 flutter pub get
 
 echo "Building for Web..."
-flutter build web
+flutter build web --no-tree-shake-icons

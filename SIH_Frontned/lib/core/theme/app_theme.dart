@@ -34,6 +34,10 @@ class AppColors {
   static const Color onSurfaceVariant = Color(0xFF424841);
   static const Color outline = Color(0xFF737971);
   static const Color outlineVariant = Color(0xFFC2C8BF);
+
+  // Status & Error
+  static const Color error = Color(0xFFBA1A1A);
+  static const Color onError = Color(0xFFFFFFFF);
 }
 
 class AppTheme {
