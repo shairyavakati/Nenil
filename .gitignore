@@ -1,0 +1,8 @@
+*.apk
+*.db
+__pycache__/
+*.pyc
+.pytest_cache/
+build/
+.dart_tool/
+.gradle/
