@@ -1,0 +1,34 @@
+services:
+  # -----------------------------------------
+  # 1. FastAPI Backend (Python)
+  # -----------------------------------------
+  - type: web
+    name: sih-backend
+    env: python
+    rootDir: SIH_Backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.0
+      - key: DATABASE_URL
+        value: sqlite:///./sih_nenil.db
+      - key: SECRET_KEY
+        generateValue: true
+
+  # -----------------------------------------
+  # 2. Flutter Web Frontend (Static Site)
+  # -----------------------------------------
+  - type: web
+    name: sih-frontend
+    env: static
+    rootDir: SIH_Frontned
+    buildCommand: bash ./render-build.sh
+    staticPublishPath: build/web
+    envVars:
+      # Optional: You can pass your backend URL to the frontend build environment if needed
+      - key: VITE_API_URL # Or whatever env var your frontend uses for the API
+        fromService:
+          type: web
+          name: sih-backend
+          envVarKey: RENDER_EXTERNAL_URL
